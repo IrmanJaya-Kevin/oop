@@ -1,7 +1,10 @@
-//pewarisan
-// class utama / parent / super class
+//abstraction
+//Person adalah kelas utama dan masih abstract
 class Person{
     constructor(name, address){
+        if(this.constructor === Person){
+            throw new Error("Cannot instantiate from Abstract Class")
+        }
         this.name = name
         this.address = address
     }
@@ -13,23 +16,19 @@ class Person{
     }
 }
 
-const person = new Person('Paijo','Solo');
-person.introduce()
-person.work()
-
-//inherintance ditandai dengan keyword extends
+// const Paijo = new Person('paijo','solo')
+// console.log(Paijo)
+//inheritance
 class Programmer extends Person{
     constructor(name, address, language, position){
         super(name, address)
         this.programmingLanguages = language
         this.position = position
     }
-    //overidding - mereplace tanpa parameter
     introduce(){
         super.introduce()
         console.log(`Aku diterima di posisi ${this.position}`)
     }
-    //overloading - mereplace dengan parameter
     work(company){
         super.work()
         console.log('at', company)
@@ -42,21 +41,6 @@ class Programmer extends Person{
     }
 }
 
-const Paijo = new Programmer("Paijo", "Solo", ["HTML", "CSS", "JS"], "Junior Frontend")
-console.log(Paijo)
-Paijo.introduce()
-Paijo.work("Binar Academy")
-Paijo.code()
+const Bambang = new Programmer('Bambang','surabaya','Java', 'Senior')
+console.log(Bambang)
 
-class Python extends Programmer{
-    constructor(name, address, language, position){
-        super(name, address, language, position)
-    }
-    introduce(){
-        
-    }
-}
-
-const Rian = new Python("Rian", "Solo", ["HTML", "CSS", "JS"], "Junior Frontend")
-console.log(Rian)
-Rian.introduce()
